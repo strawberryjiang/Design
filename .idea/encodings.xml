@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/design/src/main/java/com/atguigu/factory/simplefactory/pizzastore/order/OrderPizza.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/design/src/main/java/com/atguigu/factory/simplefactory/pizzastore/pizza/CheesePizza.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/design/src/main/java/com/atguigu/factory/simplefactory/pizzastore/pizza/GreekPizza.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/design/src/main/java/com/atguigu/factory/simplefactory/pizzastore/pizza/PepperPizza.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/design/src/main/java/com/atguigu/factory/simplefactory/pizzastore/pizza/Pizza.java" charset="UTF-8" />
+  </component>
+</project>
