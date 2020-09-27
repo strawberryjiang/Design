@@ -7,7 +7,6 @@ public class Client {
 		p.name = "小明";
 		p.deepCloneableTarget = new DeepCloneableTarget("今天", "吃饭");
 
-
 		DeepProtoType p2 = (DeepProtoType) p.deepClone();
 		
 		System.out.println("p.name=" + p.name + "p.deepCloneableTarget=" + p.deepCloneableTarget.hashCode());
