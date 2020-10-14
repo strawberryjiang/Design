@@ -23,6 +23,7 @@ class Singleton {
     private Singleton() {
     }
 
+    //如果不加volatile关键字，那么jvm指令重排序时，会发生错误
     //2、本类内部创建对象实例
     private static volatile Singleton instance;
 
