@@ -57,13 +57,24 @@ public class StringUsage {
          *   而str2指向的是堆中的对象，再进行intern方法时，对str1和str2已经没有影响了，所以返回false。
          *
          */
-        String s = new String("abc");
-        String s1 = "abc";
-        String s2 = new String("abc");
-        System.out.println(s == s1.intern());
-        System.out.println(s == s2.intern());
-        System.out.println(s1 == s2.intern());
+        //例1
+//        String s = new String("abc");
+//        String s1 = "abc";
+//        String s2 = new String("abc");
+//        System.out.println(s == s1.intern());//false
+//        System.out.println(s == s2.intern());//false
+//        System.out.println(s1 == s2.intern());//true
 
+        //例2
+        String s = new String("1");
+        s.intern();
+        String s2 = "1";
+        System.out.println(s == s2);//false
+
+        String s3 = new String("1") + new String("1");
+        s3.intern();
+        String s4 = "11";
+        System.out.println(s3 == s4);//true
 
 
     }
