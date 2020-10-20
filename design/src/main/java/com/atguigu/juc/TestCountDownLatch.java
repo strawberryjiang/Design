@@ -43,10 +43,15 @@ class LatchDemo implements Runnable {
 
     @Override
     public void run() {
-        synchronized (this) {
+
             try {
                 for (int i = 0; i < 50000; i++) {
                     if (i % 2 == 0) {
+                        try {
+                            Thread.sleep(1000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
                         System.out.println(i);
 
                     }
@@ -61,5 +66,5 @@ class LatchDemo implements Runnable {
         }
 
 
-    }
+
 }
