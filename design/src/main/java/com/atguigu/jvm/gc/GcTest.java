@@ -6,12 +6,15 @@ package com.atguigu.jvm.gc;
  * @create: 2020-10-15 17:22
  **/
 public class GcTest {
+
+
+    public Object instance = null;
+
     public static void main(String[] args) {
         GcTest gcTest = new GcTest();
-        GcTest gcTest2=new GcTest();
-        gcTest=gcTest2;
-        gcTest2=gcTest;
-        gcTest=null;
-        gcTest2=null;
+        GcTest gcTest2 = new GcTest();
+        gcTest.instance = gcTest2;
+        gcTest2.instance = gcTest;
+        System.gc();
     }
 }
