@@ -8,44 +8,48 @@ package com.atguigu.juc;
 public class TestProductorAndConsumer {
     public static void main(String[] args) {
         Clerk clerk = new Clerk();
-        Productor productor = new Productor(clerk);
+        Producer producer = new Producer(clerk);
         Consumer consumer = new Consumer(clerk);
-        new Thread(productor,"生产者A").start();
-        new Thread(consumer,"消费者B").start();
+        new Thread(producer, "生产者A").start();
+        new Thread(consumer, "消费者B").start();
 
 
     }
 
 
     //店员
-    static class Clerk{
-        private int product=0;
+    static class Clerk {
+        private int product = 0;
 
-        public synchronized void get(){
-            if(product>=1){
+
+        //进货
+        public synchronized void get() {
+            if (product >= 10) {
                 System.out.println("产品已满");
                 try {
                     this.wait();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-            }else{
-                System.out.println(Thread.currentThread().getName()+":"+ ++product);
+            } else {
+                System.out.println(Thread.currentThread().getName() + ":" + ++product);
                 this.notifyAll();
+
             }
 
         }
 
-        public synchronized void sale(){
-            if(product<=0){
+        //卖货
+        public synchronized void sale() {
+            if (product <= 0) {
                 System.out.println("缺货");
                 try {
                     this.wait();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-            }else {
-                System.out.println(Thread.currentThread().getName()+":"+ --product);
+            } else {
+                System.out.println(Thread.currentThread().getName() + ":" + --product);
                 this.notifyAll();
             }
         }
@@ -53,21 +57,21 @@ public class TestProductorAndConsumer {
 
 
     //生产者
-    static class Productor implements Runnable{
+    static class Producer implements Runnable {
         private Clerk clerk;
 
-        public Productor(Clerk clerk) {
+        public Producer(Clerk clerk) {
             this.clerk = clerk;
         }
 
         @Override
         public void run() {
             for (int i = 0; i < 20; i++) {
-                try {
-                    Thread.sleep(200);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+//                try {
+//                    Thread.sleep(200);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
                 clerk.get();
 
             }
@@ -75,7 +79,7 @@ public class TestProductorAndConsumer {
     }
 
     //消费者
-    static class Consumer implements Runnable{
+    static class Consumer implements Runnable {
         private Clerk clerk;
 
         public Consumer(Clerk clerk) {
