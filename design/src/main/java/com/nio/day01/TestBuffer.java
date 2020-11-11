@@ -30,12 +30,16 @@ import java.nio.ByteBuffer;
  * mark:标记，表示记录当前position的位置。可以通过reset()恢复到mark的位置
  * 一开始默认是limit=capacity
  * 0<=mark<=position <= limit <= capacity
+ *
+ * 4、直接缓冲区与非直接缓冲区
+ * 非直接缓冲区：通过allocate方法分配缓冲区，将缓冲区建立在JVM的内存中
+ * 直接缓冲区：通过allocateDirect方法将缓冲区建立在物理内存中。可以提高效率
  */
 public class TestBuffer {
 
     public static void main(String[] args) {
-        //TestBuffer.test1();
-        test2();
+        TestBuffer.test1();
+        //test2();
 
     }
 
@@ -45,50 +49,51 @@ public class TestBuffer {
         ByteBuffer buffer = ByteBuffer.allocate(1024);
 
         System.out.println("-------------allocate--------");
-        System.out.println(buffer.position());
-        System.out.println(buffer.limit());
-        System.out.println(buffer.capacity());
+        System.out.println(buffer.position());//0
+        System.out.println(buffer.limit());//1024
+        System.out.println(buffer.capacity());//1024
 
-        //2、利用put方法存入数据到缓冲区中
+        //2、利用put方法存入数据到缓冲区中,（写数据模式：position的位置就在下一个）
         buffer.put(str.getBytes());
         System.out.println("-------------put-----------");
-        System.out.println(buffer.position());
-        System.out.println(buffer.limit());
-        System.out.println(buffer.capacity());
+        System.out.println(buffer.position());//5
+        System.out.println(buffer.limit());//1024
+        System.out.println(buffer.capacity());//1024
 
-        //3、切换成读取数据的模式
+        //3、切换成读取数据的模式  limit = position;position = 0;mark = -1;
         buffer.flip();
+        System.out.println(buffer == buffer.flip());//flip方法返回的是this
         System.out.println("-------------flip-----------");
-        System.out.println(buffer.position());
-        System.out.println(buffer.limit());
-        System.out.println(buffer.capacity());
+        System.out.println(buffer.position());//0
+        System.out.println(buffer.limit());//5
+        System.out.println(buffer.capacity());//1024
 
-        //4、利用get读取缓冲区中的数据
+        //4、利用get读取缓冲区中的数据,把数据读取到字节数组中
         byte[] bytes = new byte[buffer.limit()];
         buffer.get(bytes);
         System.out.println(new String(bytes, 0, bytes.length));
         System.out.println("-------------get-----------");
-        System.out.println(buffer.position());
-        System.out.println(buffer.limit());
-        System.out.println(buffer.capacity());
+        System.out.println(buffer.position());//5
+        System.out.println(buffer.limit());//5
+        System.out.println(buffer.capacity());//1024
 
-        //5、rewind可重复读数据
+        //5、rewind可重复读数据，回到读模式  position = 0;mark = -1;return this;
         buffer.rewind();
         System.out.println("-------------rewind-----------");
-        System.out.println(buffer.position());
-        System.out.println(buffer.limit());
-        System.out.println(buffer.capacity());
+        System.out.println(buffer.position());//0
+        System.out.println(buffer.limit());//5
+        System.out.println(buffer.capacity());//1024
 
-        //6、clear:清空缓冲区,但是缓冲区中的数据依然存在，但是处于“被遗忘”状态
+        //6、clear:清空缓冲区,但是缓冲区中的数据依然存在，但是处于“被遗忘”状态       position = 0;limit = capacity;mark = -1;return this;
         buffer.clear();
         System.out.println("-------------clear-----------");
-        System.out.println(buffer.position());
-        System.out.println(buffer.limit());
-        System.out.println(buffer.capacity());
-
-        System.out.println(buffer.get());
+        System.out.println(buffer.position());//0
+        System.out.println(buffer.limit());//1024
+        System.out.println(buffer.capacity());//1024
+        System.out.println(buffer.get());//97
 
     }
+
 
     public static void test2() {
         String str = "abcde";
@@ -110,7 +115,7 @@ public class TestBuffer {
         buffer.reset();
         System.out.println(buffer.position());
 
-        if(buffer.hasRemaining()){
+        if (buffer.hasRemaining()) {
             System.out.println(buffer.remaining());//还有正确可以使用的数量
         }
 
