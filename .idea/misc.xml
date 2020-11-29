@@ -8,6 +8,7 @@
       <list>
         <option value="$PROJECT_DIR$/design/pom.xml" />
         <option value="$PROJECT_DIR$/jdksrc/pom.xml" />
+        <option value="$PROJECT_DIR$/networkprogram/pom.xml" />
       </list>
     </option>
   </component>
