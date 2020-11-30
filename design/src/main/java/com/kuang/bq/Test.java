@@ -6,7 +6,7 @@ import java.util.concurrent.TimeUnit;
 
 public class Test {
     public static void main(String[] args) throws InterruptedException {
-        test4();
+        test1();
     }
     /**
      * 抛出异常

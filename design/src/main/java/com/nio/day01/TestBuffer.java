@@ -1,12 +1,14 @@
 package com.nio.day01;
 
 /**
- * @description:
+ * @description:缓冲区的概念
  * @author: yangjiang
  * @create: 2020-11-07 20:16
  **/
 
+import org.junit.Test;
 
+import java.nio.Buffer;
 import java.nio.ByteBuffer;
 
 /**
@@ -30,20 +32,15 @@ import java.nio.ByteBuffer;
  * mark:标记，表示记录当前position的位置。可以通过reset()恢复到mark的位置
  * 一开始默认是limit=capacity
  * 0<=mark<=position <= limit <= capacity
- *
+ * <p>
  * 4、直接缓冲区与非直接缓冲区
  * 非直接缓冲区：通过allocate方法分配缓冲区，将缓冲区建立在JVM的内存中
  * 直接缓冲区：通过allocateDirect方法将缓冲区建立在物理内存中。可以提高效率
  */
 public class TestBuffer {
 
-    public static void main(String[] args) {
-        TestBuffer.test1();
-        //test2();
-
-    }
-
-    public static void test1() {
+    @Test
+    public void test1() {
         String str = "abcde";
         //1、分配一个指定大小的缓冲区
         ByteBuffer buffer = ByteBuffer.allocate(1024);
@@ -61,7 +58,6 @@ public class TestBuffer {
         System.out.println(buffer.capacity());//1024
 
         //3、切换成读取数据的模式  limit = position;position = 0;mark = -1;
-        buffer.flip();
         System.out.println(buffer == buffer.flip());//flip方法返回的是this
         System.out.println("-------------flip-----------");
         System.out.println(buffer.position());//0
@@ -95,7 +91,8 @@ public class TestBuffer {
     }
 
 
-    public static void test2() {
+    @Test
+    public void test2() {
         String str = "abcde";
         ByteBuffer buffer = ByteBuffer.allocate(1024);
         buffer.put(str.getBytes());

@@ -31,6 +31,8 @@ public class TCPTest3 {
         while ((len = fis.read(bytes)) != -1) {
             os.write(bytes, 0, len);
         }
+
+
         //因为read方法是阻塞的
         socket.shutdownOutput();
         //接受来自服务器端发送的消息

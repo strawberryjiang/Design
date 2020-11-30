@@ -6,6 +6,8 @@ package com.nio.day01;
  * @create: 2020-11-11 10:15
  **/
 
+import org.junit.Test;
+
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.RandomAccessFile;
@@ -48,7 +50,8 @@ public class TestChannel {
 
     }
 
-    public static void test4() throws Exception {
+    @Test
+    public void test4() throws Exception {
         RandomAccessFile rw = new RandomAccessFile("1.png", "rw");
         //1、获取通道
         FileChannel channel = rw.getChannel();
@@ -75,7 +78,8 @@ public class TestChannel {
 
     }
 
-    public static void test3() throws Exception {
+    @Test
+    public void test3() throws Exception {
         //通道之间的数据传输(直接缓冲区)
         FileChannel inChannel = FileChannel.open(Paths.get("1.png"), StandardOpenOption.READ);
         FileChannel outChannel = FileChannel.open(Paths.get("2.png"), StandardOpenOption.WRITE, StandardOpenOption.READ, StandardOpenOption.CREATE);
@@ -86,7 +90,8 @@ public class TestChannel {
         outChannel.close();
     }
 
-    public static void test1() throws Exception {
+    @Test
+    public void test2() throws Exception {
         //非直接缓冲区利用通道完成文件的复制
         FileInputStream fis = new FileInputStream("1.png");
         FileOutputStream fos = new FileOutputStream("2.png");
@@ -107,7 +112,8 @@ public class TestChannel {
 
     }
 
-    public static void test2() throws Exception {
+    @Test
+    public void test1() throws Exception {
         //直接缓冲区利用通道完成文件的复制
         FileChannel inChannel = FileChannel.open(Paths.get("1.png"), StandardOpenOption.READ);
         FileChannel outChannel = FileChannel.open(Paths.get("2.png"), StandardOpenOption.WRITE, StandardOpenOption.READ, StandardOpenOption.CREATE);
