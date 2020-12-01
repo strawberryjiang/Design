@@ -6,20 +6,13 @@ package com.nio.day02;
  * @create: 2020-11-30 17:54
  **/
 
-
 import org.junit.Test;
 
-import javax.print.DocFlavor;
-import java.io.IOException;
 import java.net.InetSocketAddress;
-import java.net.ServerSocket;
 import java.nio.ByteBuffer;
 import java.nio.channels.*;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
 import java.util.Date;
 import java.util.Iterator;
-import java.util.Set;
 
 /**
  * 使用NIO通信的三个核心概念
@@ -31,27 +24,22 @@ import java.util.Set;
  */
 public class TestNoBlockingNIO {
 
-
     @Test
     public void client() throws Exception {
         //1、获取通道
         SocketChannel socketChannel = SocketChannel.open(new InetSocketAddress("127.0.0.1", 9898));
-
         //2、切换成非阻塞模式
         socketChannel.configureBlocking(false);
-
         //3、分配指定大小的缓冲区
         ByteBuffer buffer = ByteBuffer.allocate(1024);
-
         //4、发送数据给服务端
         buffer.put(new Date().toString().getBytes());
+        //读数据之前一定要flip。因为之前的position为最后一个字节的位置，需要将position设置为0，然后limit为字节数组的size
         buffer.flip();
         socketChannel.write(buffer);
         buffer.clear();
-
         //5、关闭通道
         socketChannel.close();
-
 
     }
 
@@ -59,16 +47,12 @@ public class TestNoBlockingNIO {
     public void server() throws Exception {
         //1、获取通道
         ServerSocketChannel serverSocketChannel = ServerSocketChannel.open();
-
         //2、切换非阻塞通道
         serverSocketChannel.configureBlocking(false);
-
         //3、绑定连接
         serverSocketChannel.bind(new InetSocketAddress(9898));
-
         //4、获取通道
         Selector selector = Selector.open();
-
         //5、将通道注册到选择器上，并且指定"监听接收事件"
         serverSocketChannel.register(selector, SelectionKey.OP_ACCEPT);
 
@@ -106,7 +90,6 @@ public class TestNoBlockingNIO {
             iterator.remove();
 
         }
-
 
     }
 }

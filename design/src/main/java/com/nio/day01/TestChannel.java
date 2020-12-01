@@ -46,9 +46,6 @@ import java.nio.file.StandardOpenOption;
  */
 
 public class TestChannel {
-    public static void main(String[] args) {
-
-    }
 
     @Test
     public void test4() throws Exception {
