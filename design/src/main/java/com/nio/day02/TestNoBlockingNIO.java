@@ -24,6 +24,11 @@ import java.util.Iterator;
  */
 public class TestNoBlockingNIO {
 
+    public static void main(String[] args) {
+        int i=5&6;
+        System.out.println(i);
+    }
+
     @Test
     public void client() throws Exception {
         //1、获取通道
