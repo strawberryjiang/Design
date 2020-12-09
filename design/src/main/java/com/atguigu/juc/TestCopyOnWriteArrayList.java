@@ -13,17 +13,14 @@ public class TestCopyOnWriteArrayList {
         HelloThread helloThread = new HelloThread();
         for (int i = 0; i < 10; i++) {
             new Thread(helloThread).start();
-
         }
     }
-
 }
 
 class HelloThread implements Runnable {
 
 
     //private static List<String> list = Collections.synchronizedList(new ArrayList<>());
-
 
     //适合迭代
     private static CopyOnWriteArrayList<String> list=new CopyOnWriteArrayList<>();//写入并复制

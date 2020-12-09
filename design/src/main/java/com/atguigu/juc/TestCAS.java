@@ -24,13 +24,10 @@ public class TestCAS {
 class CompareAndSwap{
     private int value;
 
-
-
     //获取内存值
     public synchronized int get(){
         return value;
     }
-
 
     //比较
     public synchronized int compareAndSwap(int expectValue,int newValue){
@@ -40,7 +37,6 @@ class CompareAndSwap{
         }
         return oldValue;
     }
-
 
     //设置
     public synchronized boolean compareAndSet(int expectValue,int newValue){
