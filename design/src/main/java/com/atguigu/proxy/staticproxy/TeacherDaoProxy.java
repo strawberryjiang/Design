@@ -12,7 +12,6 @@ public class TeacherDaoProxy implements ITeacherDao {
         this.target = target;
     }
 
-
     @Override
     public void teach() {
         System.out.println("开始代理	完成某些操作。。。。。 ");

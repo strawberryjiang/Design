@@ -5,6 +5,8 @@ import net.sf.cglib.proxy.MethodInterceptor;
 import net.sf.cglib.proxy.MethodProxy;
 
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @description:
@@ -13,6 +15,7 @@ import java.lang.reflect.Method;
  **/
 public class ProxyFactory implements MethodInterceptor {
 
+    //传入一个被代理的对象
     private Object target;
 
     public ProxyFactory(Object target) {
@@ -20,6 +23,7 @@ public class ProxyFactory implements MethodInterceptor {
     }
 
 
+    //返回一个代理对象，这个代理对象是目标对象target对象
     public Object getProxyInstance() {
         //1. 创建一个工具类
         Enhancer enhancer = new Enhancer();
@@ -31,7 +35,6 @@ public class ProxyFactory implements MethodInterceptor {
         return enhancer.create();
     }
 
-
     //重写intercept 方法，会调用目标对象的方法
     @Override
     public Object intercept(Object arg0, Method method, Object[] args, MethodProxy arg3) throws Throwable {
@@ -40,6 +43,5 @@ public class ProxyFactory implements MethodInterceptor {
         System.out.println("Cglib 代理模式 ~~ 提交");
         return returnVal;
     }
-
 
 }
