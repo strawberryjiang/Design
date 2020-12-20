@@ -1,0 +1,9 @@
+package com.atguigu.generic;
+
+/**
+ * @description:
+ * @author: yangjiang
+ * @create: 2020-12-19 14:59
+ **/
+public class Apple extends Fruit{
+}
