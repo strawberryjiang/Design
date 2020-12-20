@@ -1,7 +1,7 @@
 package com.atguigu.decorator;
 
 /**
- * @description:
+ * @description:装饰角色
  * @author: yangjiang
  * @create: 2020-10-13 20:49
  **/
@@ -20,6 +20,6 @@ public class Decorator extends Drink {
 
     @Override
     public String getDes() {
-        return super.getDes()+""+super.getPrice()+"&&"+obj.getDes();
+        return super.getDes() + "" + super.getPrice() + "&&" + obj.getDes();
     }
 }
