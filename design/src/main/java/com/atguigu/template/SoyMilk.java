@@ -10,7 +10,9 @@ public abstract class SoyMilk {
     //模板方法，不让子类去覆盖.
     final void make() {
         select();
-        addCondiments();
+        if(this.customerWantCondiments()){
+            addCondiments();
+        }
         soak();
         beat();
     }
@@ -31,5 +33,10 @@ public abstract class SoyMilk {
     //打碎
     void beat() {
         System.out.println("第四步：黄豆和配料放到豆浆机去打碎");
+    }
+
+    //钩子方法，决定是否需要添加配料
+    boolean customerWantCondiments() {
+        return true;
     }
 }
