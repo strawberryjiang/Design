@@ -3,7 +3,7 @@ package com.atguigu.decorator;
 import lombok.Data;
 
 /**
- * @description:
+ * @description: component
  * @author: yangjiang
  * @create: 2020-10-13 20:36
  **/
