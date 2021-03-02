@@ -6,11 +6,11 @@ package com.atguigu.iterator;
  * @create: 2020-12-28 17:07
  **/
 public class Department {
+
     private String name;
     private String desc;
 
     public Department(String name, String desc) {
-        super();
         this.name = name;
         this.desc = desc;
     }

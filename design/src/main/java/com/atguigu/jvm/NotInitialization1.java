@@ -7,7 +7,7 @@ package com.atguigu.jvm;
  **/
 public class NotInitialization1 {
     public static void main(String[] args) {
-        Parent parent = new Parent();
-        System.out.println(parent.A);
+//        Parent parent = new Parent();
+        System.out.println(Son.A);
     }
 }

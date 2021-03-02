@@ -5,6 +5,7 @@ package com.atguigu.iterator;
  * @author: yangjiang
  * @create: 2020-12-28 17:06
  **/
+
 import java.util.Iterator;
 
 public class ComputerCollege implements College {
@@ -17,13 +18,11 @@ public class ComputerCollege implements College {
         addDepartment("Java 专业", " Java 专业  ");
         addDepartment("PHP 专业", " PHP 专业  ");
         addDepartment("大数据专业", "  大数据专业 ");
-
     }
-
-
 
     @Override
     public String getName() {
+        return null;
     }
 
 
