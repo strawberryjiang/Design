@@ -22,7 +22,7 @@ public class TestCAS {
 
 
 class CompareAndSwap{
-    private int value;
+    private volatile int value;
 
     //获取内存值
     public synchronized int get(){
